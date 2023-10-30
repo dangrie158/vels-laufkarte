@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/vels-laufkarte/static/css/main.dd8ce2ac.css",
-    "main.js": "/vels-laufkarte/static/js/main.ede392ed.js",
+    "main.js": "/vels-laufkarte/static/js/main.e66bbb6a.js",
     "static/js/738.cc1114b7.chunk.js": "/vels-laufkarte/static/js/738.cc1114b7.chunk.js",
     "static/js/22.dc0e53d2.chunk.js": "/vels-laufkarte/static/js/22.dc0e53d2.chunk.js",
     "static/js/372.8dcc490c.chunk.js": "/vels-laufkarte/static/js/372.8dcc490c.chunk.js",
@@ -14,7 +14,7 @@
     "service-worker.js": "/vels-laufkarte/service-worker.js",
     "index.html": "/vels-laufkarte/index.html",
     "main.dd8ce2ac.css.map": "/vels-laufkarte/static/css/main.dd8ce2ac.css.map",
-    "main.ede392ed.js.map": "/vels-laufkarte/static/js/main.ede392ed.js.map",
+    "main.e66bbb6a.js.map": "/vels-laufkarte/static/js/main.e66bbb6a.js.map",
     "738.cc1114b7.chunk.js.map": "/vels-laufkarte/static/js/738.cc1114b7.chunk.js.map",
     "22.dc0e53d2.chunk.js.map": "/vels-laufkarte/static/js/22.dc0e53d2.chunk.js.map",
     "372.8dcc490c.chunk.js.map": "/vels-laufkarte/static/js/372.8dcc490c.chunk.js.map",
@@ -27,6 +27,6 @@
   },
   "entrypoints": [
     "static/css/main.dd8ce2ac.css",
-    "static/js/main.ede392ed.js"
+    "static/js/main.e66bbb6a.js"
   ]
 }
