@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/vels-laufkarte/static/css/main.dd8ce2ac.css",
+    "main.js": "/vels-laufkarte/static/js/main.ede392ed.js",
+    "static/js/738.cc1114b7.chunk.js": "/vels-laufkarte/static/js/738.cc1114b7.chunk.js",
+    "static/js/22.dc0e53d2.chunk.js": "/vels-laufkarte/static/js/22.dc0e53d2.chunk.js",
+    "static/js/372.8dcc490c.chunk.js": "/vels-laufkarte/static/js/372.8dcc490c.chunk.js",
+    "static/js/856.66f4e14e.chunk.js": "/vels-laufkarte/static/js/856.66f4e14e.chunk.js",
+    "static/js/344.25ce6cdb.chunk.js": "/vels-laufkarte/static/js/344.25ce6cdb.chunk.js",
+    "static/js/841.59ecab3b.chunk.js": "/vels-laufkarte/static/js/841.59ecab3b.chunk.js",
+    "static/js/186.31e72279.chunk.js": "/vels-laufkarte/static/js/186.31e72279.chunk.js",
+    "static/js/886.65d4cf34.chunk.js": "/vels-laufkarte/static/js/886.65d4cf34.chunk.js",
+    "static/js/225.90fd3a2a.chunk.js": "/vels-laufkarte/static/js/225.90fd3a2a.chunk.js",
+    "service-worker.js": "/vels-laufkarte/service-worker.js",
+    "index.html": "/vels-laufkarte/index.html",
+    "main.dd8ce2ac.css.map": "/vels-laufkarte/static/css/main.dd8ce2ac.css.map",
+    "main.ede392ed.js.map": "/vels-laufkarte/static/js/main.ede392ed.js.map",
+    "738.cc1114b7.chunk.js.map": "/vels-laufkarte/static/js/738.cc1114b7.chunk.js.map",
+    "22.dc0e53d2.chunk.js.map": "/vels-laufkarte/static/js/22.dc0e53d2.chunk.js.map",
+    "372.8dcc490c.chunk.js.map": "/vels-laufkarte/static/js/372.8dcc490c.chunk.js.map",
+    "856.66f4e14e.chunk.js.map": "/vels-laufkarte/static/js/856.66f4e14e.chunk.js.map",
+    "344.25ce6cdb.chunk.js.map": "/vels-laufkarte/static/js/344.25ce6cdb.chunk.js.map",
+    "841.59ecab3b.chunk.js.map": "/vels-laufkarte/static/js/841.59ecab3b.chunk.js.map",
+    "186.31e72279.chunk.js.map": "/vels-laufkarte/static/js/186.31e72279.chunk.js.map",
+    "886.65d4cf34.chunk.js.map": "/vels-laufkarte/static/js/886.65d4cf34.chunk.js.map",
+    "225.90fd3a2a.chunk.js.map": "/vels-laufkarte/static/js/225.90fd3a2a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dd8ce2ac.css",
+    "static/js/main.ede392ed.js"
+  ]
+}
