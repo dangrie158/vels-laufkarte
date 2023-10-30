@@ -1,6 +1,6 @@
 {
-  "short_name": "Ionic App",
-  "name": "My Ionic App",
+  "short_name": "VELS Laufkarte",
+  "name": "VELS Elektronische Laufkarte",
   "icons": [
     {
       "src": "assets/icon/favicon.png",
@@ -10,7 +10,7 @@
     {
       "src": "assets/icon/icon.png",
       "type": "image/png",
-      "sizes": "512x512",
+      "sizes": "100x100",
       "purpose": "maskable"
     }
   ],

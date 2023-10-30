@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "AbsentGrotesque";
+    src: url("../assets/fonts/Absent-Grotesque-Bold.woff2") format("woff");
+}
+
+ion-title, h2{
+    font-family: "AbsentGrotesque";
+}
