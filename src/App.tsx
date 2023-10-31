@@ -34,7 +34,7 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <RouteStateContext.Provider value={useRouteState()}>
-        <IonReactRouter>
+        <IonReactRouter basename="/vels-laufkarte">
           <IonTabs>
             <IonRouterOutlet>
               <Route exact path="/eg">
