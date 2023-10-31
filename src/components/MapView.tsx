@@ -72,7 +72,7 @@ type MapViewProps = {
   mapImage: string;
   routes: RouteInformation;
   routeStates: RouteStateInformation;
-  onRouteClicked: (routeId: RouteId) => void;
+  onRouteClicked: (route: Route) => void;
 };
 
 const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
@@ -124,7 +124,7 @@ const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
     <svg width={container.width} height={container.height} ref={svgContainer}>
       <g ref={mapContainer} width={container.width} height={container.height}>
         <image width={container.width} height={container.height} href={props.mapImage} />
-        {Object.entries(props.routes).map(([routeId, route]) => {
+        {props.routes.map(route => {
           const x = route.location.x * factor + xOffset;
           const y = route.location.y * factor + yOffset;
           const routeSize = ROUTE_SIZE * factor;
@@ -132,9 +132,9 @@ const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
             <g
               width={routeSize}
               height={routeSize}
-              key={routeId}
+              key={route.id}
               transform={`rotate(${route.location.rotation}, ${x}, ${y}) translate(${x} ${y}) `}
-              onClick={() => props.onRouteClicked(routeId)}
+              onClick={() => props.onRouteClicked(route)}
               style={{ cursor: "pointer" }}
               opacity={opacity(route)}
             >

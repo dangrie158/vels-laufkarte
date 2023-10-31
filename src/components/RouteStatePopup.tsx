@@ -1,14 +1,14 @@
 import React from "react";
-import { RouteId, RouteState } from "../types";
+import { Route, RouteState } from "../types";
 import { IonAlert, useIonToast } from "@ionic/react";
 import { IonAlertCustomEvent, OverlayEventDetail } from "@ionic/core";
 
 type RouteStatePopupProps = {
   isOpen: boolean;
-  currentRoute: RouteId | undefined;
-  onUpdateRouteState: (routeId: RouteId, newState: RouteState) => void;
+  currentRoute: Route | null;
+  onUpdateRouteState: (route: Route, newState: RouteState) => void;
   onDismiss: () => void;
-  initialValue: RouteState;
+  initialValue: RouteState | null;
 };
 
 const FEEDBACK_MESSAGES = {
@@ -20,7 +20,7 @@ const RouteStatePopup: React.FC<RouteStatePopupProps> = (props: RouteStatePopupP
   const [openToast] = useIonToast();
 
   const handleDismiss = (event: IonAlertCustomEvent<OverlayEventDetail>) => {
-    if (props.currentRoute !== undefined && event.detail.data !== undefined) {
+    if (props.currentRoute !== null && event.detail.data !== undefined) {
       const newState = event.detail.data.values;
       const feedbackCategory = ["tbd", "project"].includes(newState) ? "neutral" : "positive";
       const availableMessages = FEEDBACK_MESSAGES[feedbackCategory];
@@ -35,7 +35,7 @@ const RouteStatePopup: React.FC<RouteStatePopupProps> = (props: RouteStatePopupP
     <IonAlert
       isOpen={props.isOpen}
       onDidDismiss={event => handleDismiss(event)}
-      header={`Route ${props.currentRoute}`}
+      header={`Route ${props.currentRoute?.id}`}
       buttons={[{ text: "Speichern", role: "save" }]}
       inputs={[
         {

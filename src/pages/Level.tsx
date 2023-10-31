@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 import MapView from "../components/MapView";
 import "./Level.css";
-import { EVENT_NAME, useRouteState, useRoutes } from "../providers";
-import { Route, RouteId, RouteState } from "../types";
+import { EVENT_NAME, RouteStateContext, useRoutes } from "../providers";
+import { Route, RouteState } from "../types";
 import RouteStatePopup from "../components/RouteStatePopup";
 
 type LevelProps = {
@@ -14,20 +14,15 @@ type LevelProps = {
 
 const Level: React.FC<LevelProps> = (props: LevelProps) => {
   const [allRoutes] = useRoutes();
-  const [routeState, setRouteState] = useRouteState();
+  const [routeState, setRouteState] = useContext(RouteStateContext);
   const [currentRoute, setCurrentRoute] = useState<Route | null>(null);
 
-  const routes = Object.keys(allRoutes)
-    .filter(routeId => allRoutes[routeId].level === props.abbrevation)
-    .reduce((accumulator, key) => ((accumulator[key] = allRoutes[key]), accumulator), {} as typeof allRoutes);
-  const handleRouteClick = (routeId: RouteId) => {
-    setCurrentRoute(routes[routeId]);
-  };
+  const routes = allRoutes.filter(route => route.level === props.abbrevation);
 
-  const updateRouteState = (routeId: RouteId, newState: RouteState) => {
+  const updateRouteState = (route: Route, newState: RouteState) => {
     setRouteState({
       ...routeState,
-      [routeId]: { state: newState },
+      [route.id]: { state: newState },
     });
   };
   const currentRouteState = routeState[currentRoute?.id ?? ""]?.state ?? null;
@@ -49,13 +44,13 @@ const Level: React.FC<LevelProps> = (props: LevelProps) => {
           mapImage={props.mapImage}
           routes={routes}
           routeStates={routeState}
-          onRouteClicked={routeId => handleRouteClick(routeId)}
+          onRouteClicked={route => setCurrentRoute(route)}
         ></MapView>
         <RouteStatePopup
           isOpen={currentRoute !== null}
-          currentRoute={currentRoute?.id}
+          currentRoute={currentRoute}
           initialValue={currentRouteState}
-          onUpdateRouteState={(routeId, newState) => updateRouteState(routeId, newState)}
+          onUpdateRouteState={(route, newState) => updateRouteState(route, newState)}
           onDismiss={() => setCurrentRoute(null)}
         ></RouteStatePopup>
       </IonContent>

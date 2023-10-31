@@ -1,6 +1,6 @@
 enum RouteIdType { _ = '' }
-type RouteId = string & RouteIdType;
 
+export type RouteId = string & RouteIdType;
 export type RouteColor = "gray" | "yellow" | "green" | "violet" | "pink" | "black" | "blue" | "orange" | "red" | "white" | "turquoise";
 
 export type Route = {
@@ -9,7 +9,7 @@ export type Route = {
     location: { x: number; y: number; rotation: number; };
     color: RouteColor;
 };
-export type RouteInformation = Record<RouteId, Route>;
+export type RouteInformation = Route[];
 
 export type RouteState = "tbd" | "project" | "flash" | "top";
 export type RouteStateInformation = Record<RouteId, {
