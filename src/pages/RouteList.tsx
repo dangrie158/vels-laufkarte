@@ -4,6 +4,7 @@ import "./RouteList.css";
 import { EVENT_NAME, useRouteState, useRoutes } from "../hooks";
 import { Route, RouteId, RouteState } from "../types";
 import RouteStatePopup from "../components/RouteStatePopup";
+import markIcon from "../assets/mark.svg";
 
 const RouteList: React.FC = () => {
   const [routes] = useRoutes();
@@ -64,7 +65,7 @@ const RouteList: React.FC = () => {
                         <IonCol size="4">
                           {routeId}
                           {routeState[routeId]?.state === "project" ? (
-                            <img className="project-mark" src="assets/mark.svg" />
+                            <img className="project-mark" src={markIcon} />
                           ) : (
                             ""
                           )}

@@ -1,7 +1,7 @@
 import { select, zoom } from "d3";
 import React, { useRef, useEffect, useState } from "react";
 import { Route, RouteColor, RouteId, RouteStateInformation } from "../types";
-
+import squareMarkIcon from "../assets/mark-square.svg";
 const ROUTE_SIZE = 0.023;
 type HexColor = `#${string}`;
 
@@ -161,8 +161,8 @@ const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
               {props.routeStates[route.id]?.state === "project" ? (
                 <image
                   width={routeSize * 2}
-                  href="assets/mark-square.svg"
-                  transform={`rotate(-${route.location.rotation}) translate(${-routeSize}, ${-routeSize / 2.5})`}
+                  href={squareMarkIcon}
+                  transform={`rotate(${-route.location.rotation}) translate(${-routeSize}, ${-routeSize / 2.5})`}
                 ></image>
               ) : (
                 ""

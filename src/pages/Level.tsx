@@ -9,6 +9,7 @@ import RouteStatePopup from "../components/RouteStatePopup";
 type LevelProps = {
   name: string;
   abbrevation: string;
+  mapImage: string;
 };
 
 const Level: React.FC<LevelProps> = (props: LevelProps) => {
@@ -45,7 +46,7 @@ const Level: React.FC<LevelProps> = (props: LevelProps) => {
           </IonToolbar>
         </IonHeader>
         <MapView
-          mapImage={`assets/floors/${props.abbrevation}.svg`}
+          mapImage={props.mapImage}
           routes={routes}
           routeStates={routeState}
           onRouteClicked={routeId => handleRouteClick(routeId)}

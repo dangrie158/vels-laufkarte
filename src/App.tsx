@@ -26,6 +26,9 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import RouteList from "./pages/RouteList";
 
+import egMap from "./assets/floors/EG.svg";
+import ogMap from "./assets/floors/OG.svg";
+
 setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
@@ -33,10 +36,10 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/eg">
-            <Level name="ERDGESCHOSS" abbrevation="EG" />
+            <Level name="ERDGESCHOSS" abbrevation="EG" mapImage={egMap} />
           </Route>
           <Route exact path="/og">
-            <Level name="OBERGESCHOSS" abbrevation="OG" />
+            <Level name="OBERGESCHOSS" abbrevation="OG" mapImage={ogMap} />
           </Route>
           <Route exact path="/list">
             <RouteList />
