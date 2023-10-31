@@ -82,7 +82,6 @@ const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
   const [container, setContainer] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
     const width = window.innerWidth;
     const height = window.innerHeight;
     setContainer({ width, height });
@@ -90,13 +89,6 @@ const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
     const svg = select(svgContainer.current);
     svg.call(handleZoom as unknown as () => void);
   }, []);
-
-  const handleWindowResize = () => {
-    const height = svgContainer.current?.clientHeight;
-    const width = svgContainer.current?.clientWidth;
-
-    setContainer({ width: width ?? 0, height: height ?? 0 });
-  };
 
   const handleZoom = zoom().on("zoom", event => {
     const g = select(mapContainer.current);
@@ -114,6 +106,7 @@ const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
     }
     return ROUTE_COLORS[route.color].stroke;
   };
+
   const opacity = (route: Route) => {
     if (props.routeStates[route.id]?.state === "flash" || props.routeStates[route.id]?.state === "top") {
       return 0.5;
