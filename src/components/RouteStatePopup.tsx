@@ -25,7 +25,7 @@ const RouteStatePopup: React.FC<RouteStatePopupProps> = (props: RouteStatePopupP
       const feedbackCategory = ["tbd", "project"].includes(newState) ? "neutral" : "positive";
       const availableMessages = FEEDBACK_MESSAGES[feedbackCategory];
       const randomMessage = availableMessages[Math.floor(Math.random() * availableMessages.length)];
-      openToast(randomMessage, 1000);
+      openToast({ message: randomMessage, duration: 1000, position: "top" });
       props.onUpdateRouteState(props.currentRoute, newState);
     }
     props.onDismiss();
