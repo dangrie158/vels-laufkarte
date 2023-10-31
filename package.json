@@ -1,5 +1,5 @@
 {
-  "name": "wintercup",
+  "name": "vels-laufkarte",
   "version": "0.0.1",
   "private": true,
   "homepage": "https://dangrie158.github.io/vels-laufkarte",
@@ -56,5 +56,5 @@
     "Safari >=14",
     "iOS >=14"
   ],
-  "description": "VELS Winter Cup Elektronische Laufkarte"
+  "description": "VELS Elektronische Laufkarte"
 }
