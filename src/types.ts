@@ -1,6 +1,6 @@
-enum RouteIdType { _ = '' }
+enum RouteIdType { _ = 0 }
 
-export type RouteId = string & RouteIdType;
+export type RouteId = number & RouteIdType;
 export type RouteColor = "gray" | "yellow" | "green" | "violet" | "pink" | "black" | "blue" | "orange" | "red" | "white" | "turquoise";
 
 export type Route = {

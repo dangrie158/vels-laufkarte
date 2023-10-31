@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 import MapView from "../components/MapView";
-import "./Level.css";
 import { EVENT_NAME, RouteStateContext, useRoutes } from "../providers";
 import { Route, RouteState } from "../types";
 import RouteStatePopup from "../components/RouteStatePopup";
@@ -25,7 +24,9 @@ const Level: React.FC<LevelProps> = (props: LevelProps) => {
       [route.id]: { state: newState },
     });
   };
-  const currentRouteState = routeState[currentRoute?.id ?? ""]?.state ?? null;
+
+  const currentRouteState: RouteState | null =
+    currentRoute !== null ? routeState[currentRoute.id]?.state ?? null : null;
 
   return (
     <IonPage>
@@ -34,7 +35,7 @@ const Level: React.FC<LevelProps> = (props: LevelProps) => {
           <IonTitle style={{ opacity: 1 }}>{EVENT_NAME}</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent className="bg-green">
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">{props.name}</IonTitle>

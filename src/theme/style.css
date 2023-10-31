@@ -3,6 +3,15 @@
     src: url("../assets/fonts/Absent-Grotesque-Bold.woff2") format("woff");
 }
 
-ion-title, h2{
+ion-title,
+h2 {
     font-family: "AbsentGrotesque";
+}
+
+ion-content.bg-white {
+    --background: #FFFFFF;
+}
+
+ion-content.bg-green {
+    --background: #717E47;
 }

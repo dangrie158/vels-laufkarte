@@ -23,7 +23,8 @@ const RouteList: React.FC = () => {
     });
   };
 
-  const currentRouteState: RouteState | null = currentRoute !== null ? routeState[currentRoute.id].state : null;
+  const currentRouteState: RouteState | null =
+    currentRoute !== null ? routeState[currentRoute.id]?.state ?? null : null;
 
   return (
     <IonPage>
@@ -32,7 +33,7 @@ const RouteList: React.FC = () => {
           <IonTitle style={{ opacity: 1 }}>{EVENT_NAME}</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="route-list">
+      <IonContent className="bg-white">
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Alle Routen</IonTitle>
@@ -41,24 +42,24 @@ const RouteList: React.FC = () => {
         <IonGrid>
           <IonRow>
             {[1, 26, 51, 76].map((startId, column) => {
-              const routesInColumn = [...Array(25).keys()].map(i => (i + startId).toFixed() as RouteId);
+              const routesInColumn = [...Array(25).keys()].map(i => (i + startId) as RouteId);
               return (
                 <IonCol class="outer" key={column} sizeXs="6" sizeSm="6" sizeMd="3" size="3">
                   <IonGrid>
                     <IonRow>
                       <IonCol class="header" size="4"></IonCol>
                       <IonCol class="header" size="4">
-                        <h2>TOP</h2>
+                        <h2>FLASH</h2>
                       </IonCol>
                       <IonCol class="header" size="4">
-                        <h2>FLASH</h2>
+                        <h2>TOP</h2>
                       </IonCol>
                     </IonRow>
                     {routesInColumn.map(routeId => (
                       <IonRow
                         key={routeId}
                         onClick={() => handleRouteClick(routeId)}
-                        aria-disabled={!(routeId in routes)}
+                        aria-disabled={!routes.some(route => route.id === routeId)}
                       >
                         <IonCol size="4">
                           {routeId}

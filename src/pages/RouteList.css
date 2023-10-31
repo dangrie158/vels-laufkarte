@@ -1,15 +1,12 @@
-ion-content.route-list {
-    --background: #FFFFFF;
-}
-ion-grid{
+ion-grid {
     background-color: white;
     font-family: "AbsentGrotesque";
     color: #717E47;
     text-align: center;
-    margin:10px;
+    margin: 10px;
 }
 
-ion-row[aria-disabled="true"]{
+ion-row[aria-disabled="true"] {
     color: #AAAAAA;
 }
 
@@ -21,12 +18,15 @@ ion-col.header {
     border: 1px dashed #717E47;
     border-width: 0 1px;
 }
+
 ion-col.header:first-of-type {
     border-left: 0;
 }
+
 ion-col.header:last-of-type {
     border-right: 0;
 }
+
 ion-col.header h2 {
     display: block;
     font-size: 1.3rem;
@@ -39,18 +39,21 @@ ion-col.header h2 {
 ion-col:not(.header):not(.outer) {
     border: 1px dashed #717E47;
 }
+
 ion-col:not(.header):not(.outer):first-of-type {
     border-left: 0
 }
+
 ion-col:not(.header):not(.outer):last-of-type {
     border-right: 0
 }
-ion-col.entry{
+
+ion-col.entry {
     color: #000000;
 }
 
 img.project-mark {
-    width:3rem;
+    width: 3rem;
     height: 2.5rem;
     position: absolute;
     inset: 0;

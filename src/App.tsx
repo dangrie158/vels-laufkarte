@@ -18,24 +18,13 @@ import Info from "./pages/Info";
 import RouteList from "./pages/RouteList";
 import { RouteStateContext, useRouteState } from "./providers";
 
-/* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
 import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
 
-/* Optional CSS utils that can be commented out */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
-/* Theme variables */
 import "./theme/variables.css";
+import "./theme/style.css";
 
 import egMap from "./assets/floors/EG.svg";
 import ogMap from "./assets/floors/OG.svg";
@@ -76,7 +65,7 @@ const App: React.FC = () => {
               <IonTabButton tab="og" href="/og">
                 <h2>OG</h2>
               </IonTabButton>
-              <IonTabButton>
+              <IonTabButton disabled={true}>
                 <IonImg style={{ width: "50%" }} src={icon}></IonImg>
               </IonTabButton>
               <IonTabButton tab="list" href="/list">
