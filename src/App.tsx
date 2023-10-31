@@ -1,4 +1,8 @@
+/// <reference types="react-scripts" />
+
 import React from "react";
+
+import { register as registerServiceWorker } from "./serviceWorkerRegistration";
 import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
@@ -30,8 +34,9 @@ import egMap from "./assets/floors/EG.svg";
 import ogMap from "./assets/floors/OG.svg";
 
 import icon from "./assets/icon/icon.png";
-
 setupIonicReact();
+registerServiceWorker();
+
 const App: React.FC = () => {
   return (
     <IonApp>
