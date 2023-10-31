@@ -7,7 +7,6 @@ import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
   IonIcon,
-  IonImg,
   IonLabel,
   IonRouterOutlet,
   IonTabBar,
@@ -33,7 +32,9 @@ import "./theme/style.css";
 import egMap from "./assets/floors/EG.svg";
 import ogMap from "./assets/floors/OG.svg";
 
-import icon from "./assets/icon/icon.png";
+import iconLight from "./assets/icon/icon-light.png";
+import iconDark from "./assets/icon/icon-dark.png";
+
 setupIonicReact();
 registerServiceWorker();
 
@@ -71,7 +72,10 @@ const App: React.FC = () => {
                 <h2>OG</h2>
               </IonTabButton>
               <IonTabButton disabled={true}>
-                <IonImg style={{ width: "50%" }} src={icon}></IonImg>
+                <picture>
+                  <source srcSet={iconLight} media="(prefers-color-scheme: dark)"></source>
+                  <img src={iconDark} style={{ width: "50%" }} />
+                </picture>
               </IonTabButton>
               <IonTabButton tab="list" href="/list">
                 <IonIcon aria-hidden="true" icon={listOutline} />
