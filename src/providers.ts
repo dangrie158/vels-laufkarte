@@ -1,9 +1,10 @@
 import { createContext, useState } from "react";
-import { Route, RouteId, RouteInformation, RouteStateInformation } from "./types";
+import { RouteInformation, RouteStateInformation } from "./types";
 
 export const EVENT_NAME = "Wintercup 2023";
 const EVENT_KEY = EVENT_NAME.toLowerCase().replaceAll(" ", "-");
 const ROUTES_FILE_PATH = `${process.env.PUBLIC_URL}/routes/${EVENT_KEY}.json`;
+
 export function useLocalStorage<T>(key: string, defaultValue: T): [T, (_: T) => void] {
     const initialValue = JSON.parse(localStorage.getItem(key) ?? "null") ?? defaultValue;
     const [state, setState] = useState(initialValue);
@@ -19,7 +20,7 @@ export function useLocalStorage<T>(key: string, defaultValue: T): [T, (_: T) => 
 export function useRoutes(): [RouteInformation, (_: RouteInformation) => void] {
     const UPDATE_THRESHOLD = 1000 * 60;
     const [lastUpdated, setLastUpdated] = useLocalStorage<number>(`routes-${EVENT_KEY}-lastUpdated`, 0);
-    const [routes, setRoutes] = useLocalStorage<RouteInformation>(`routes-${EVENT_KEY}`, {});
+    const [routes, setRoutes] = useLocalStorage<RouteInformation>(`routes-${EVENT_KEY}`, []);
 
     if ((Date.now() - lastUpdated) >= UPDATE_THRESHOLD) {
         fetch(ROUTES_FILE_PATH)
@@ -31,8 +32,8 @@ export function useRoutes(): [RouteInformation, (_: RouteInformation) => void] {
     return [routes, setRoutes];
 }
 
-export function useRouteState(): [RouteStateInformation, (_: RouteStateInformation) => void] {
-
-    const RouteStateContext = createContext<RouteStateInformation>({});
-    return useLocalStorage<RouteStateInformation>(`${EVENT_KEY}-state`, {});
+type RouteStateContextType = [RouteStateInformation, (_: RouteStateInformation) => void];
+export const RouteStateContext = createContext<RouteStateContextType>([{} as RouteStateInformation, (a) => console.log(a)]);
+export function useRouteState(): RouteStateContextType {
+    return useLocalStorage<RouteStateInformation>(`state-${EVENT_KEY}`, {} as RouteStateInformation);
 }

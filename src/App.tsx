@@ -28,43 +28,47 @@ import RouteList from "./pages/RouteList";
 
 import egMap from "./assets/floors/EG.svg";
 import ogMap from "./assets/floors/OG.svg";
-
+import { RouteStateContext, useRouteState } from "./providers";
 setupIonicReact();
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/eg">
-            <Level name="ERDGESCHOSS" abbrevation="EG" mapImage={egMap} />
-          </Route>
-          <Route exact path="/og">
-            <Level name="OBERGESCHOSS" abbrevation="OG" mapImage={ogMap} />
-          </Route>
-          <Route exact path="/list">
-            <RouteList />
-          </Route>
-          <Route path="/info">
-            <Info />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/eg" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="eg" href="/eg">
-            <h2>EG</h2>
-          </IonTabButton>
-          <IonTabButton tab="og" href="/og">
-            <h2>OG</h2>
-          </IonTabButton>
-          <IonTabButton tab="list" href="/list">
-            <IonIcon aria-hidden="true" icon={listOutline} />
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  return (
+    <IonApp>
+      <RouteStateContext.Provider value={useRouteState()}>
+        <IonReactRouter>
+          <IonTabs>
+            <IonRouterOutlet>
+              <Route exact path="/eg">
+                <Level name="ERDGESCHOSS" abbrevation="EG" mapImage={egMap} />
+              </Route>
+              <Route exact path="/og">
+                <Level name="OBERGESCHOSS" abbrevation="OG" mapImage={ogMap} />
+              </Route>
+              <Route exact path="/list">
+                <RouteList />
+              </Route>
+              <Route path="/info">
+                <Info />
+              </Route>
+              <Route exact path="/">
+                <Redirect to="/eg" />
+              </Route>
+            </IonRouterOutlet>
+            <IonTabBar slot="bottom">
+              <IonTabButton tab="eg" href="/eg">
+                <h2>EG</h2>
+              </IonTabButton>
+              <IonTabButton tab="og" href="/og">
+                <h2>OG</h2>
+              </IonTabButton>
+              <IonTabButton tab="list" href="/list">
+                <IonIcon aria-hidden="true" icon={listOutline} />
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        </IonReactRouter>
+      </RouteStateContext.Provider>
+    </IonApp>
+  );
+};
 
 export default App;
