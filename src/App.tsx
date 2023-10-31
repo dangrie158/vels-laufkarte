@@ -1,10 +1,22 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import { IonApp, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, setupIonicReact } from "@ionic/react";
+import {
+  IonApp,
+  IonIcon,
+  IonImg,
+  IonLabel,
+  IonRouterOutlet,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  setupIonicReact,
+} from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { listOutline } from "ionicons/icons";
+import { listOutline, medalOutline } from "ionicons/icons";
 import Level from "./pages/Level";
 import Info from "./pages/Info";
+import RouteList from "./pages/RouteList";
+import { RouteStateContext, useRouteState } from "./providers";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -24,11 +36,12 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import RouteList from "./pages/RouteList";
 
 import egMap from "./assets/floors/EG.svg";
 import ogMap from "./assets/floors/OG.svg";
-import { RouteStateContext, useRouteState } from "./providers";
+
+import icon from "./assets/icon/icon.png";
+
 setupIonicReact();
 const App: React.FC = () => {
   return (
@@ -46,6 +59,9 @@ const App: React.FC = () => {
               <Route exact path="/list">
                 <RouteList />
               </Route>
+              <Route exact path="/stats">
+                <RouteList />
+              </Route>
               <Route path="/info">
                 <Info />
               </Route>
@@ -60,8 +76,16 @@ const App: React.FC = () => {
               <IonTabButton tab="og" href="/og">
                 <h2>OG</h2>
               </IonTabButton>
+              <IonTabButton>
+                <IonImg style={{ width: "50%" }} src={icon}></IonImg>
+              </IonTabButton>
               <IonTabButton tab="list" href="/list">
                 <IonIcon aria-hidden="true" icon={listOutline} />
+                <IonLabel>Laufkarte</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="stats" href="/stats">
+                <IonIcon aria-hidden="true" icon={medalOutline} />
+                <IonLabel>Stats</IonLabel>
               </IonTabButton>
             </IonTabBar>
           </IonTabs>

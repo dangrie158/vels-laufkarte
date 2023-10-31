@@ -2,6 +2,7 @@ import { select, zoom } from "d3";
 import React, { useRef, useEffect, useState } from "react";
 import { Route, RouteColor, RouteInformation, RouteStateInformation } from "../types";
 import squareMarkIcon from "../assets/mark-square.svg";
+
 const ROUTE_SIZE = 0.023;
 type HexColor = `#${string}`;
 
