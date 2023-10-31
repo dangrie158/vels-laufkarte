@@ -33,7 +33,7 @@ export function useRoutes(): [RouteInformation, (_: RouteInformation) => void] {
 }
 
 type RouteStateContextType = [RouteStateInformation, (_: RouteStateInformation) => void];
-export const RouteStateContext = createContext<RouteStateContextType>([{} as RouteStateInformation, (a) => console.log(a)]);
+export const RouteStateContext = createContext<RouteStateContextType>([{} as RouteStateInformation, () => null]);
 export function useRouteState(): RouteStateContextType {
     return useLocalStorage<RouteStateInformation>(`state-${EVENT_KEY}`, {} as RouteStateInformation);
 }
