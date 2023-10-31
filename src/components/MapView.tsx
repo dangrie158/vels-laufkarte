@@ -1,6 +1,6 @@
 import { select, zoom } from "d3";
 import React, { useRef, useEffect, useState } from "react";
-import { Route, RouteColor, RouteId, RouteStateInformation } from "../types";
+import { Route, RouteColor, RouteId, RouteInformation, RouteStateInformation } from "../types";
 import squareMarkIcon from "../assets/mark-square.svg";
 const ROUTE_SIZE = 0.023;
 type HexColor = `#${string}`;
@@ -70,7 +70,7 @@ const ROUTE_COLORS: Record<RouteColor, ColorInformation> = {
 
 type MapViewProps = {
   mapImage: string;
-  routes: Record<RouteId, Route>;
+  routes: RouteInformation;
   routeStates: RouteStateInformation;
   onRouteClicked: (routeId: RouteId) => void;
 };
