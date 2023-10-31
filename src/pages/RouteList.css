@@ -1,33 +1,34 @@
-ion-grid {
+ion-grid.route-list {
     background-color: white;
     font-family: "AbsentGrotesque";
-    color: #717E47;
+    color: var(--ion-color-primary);
     text-align: center;
     margin: 10px;
 }
 
-ion-row[aria-disabled="true"] {
+ion-grid.route-list ion-row[aria-disabled="true"] {
     color: #AAAAAA;
 }
 
-ion-col.outer {
-    box-shadow: 3px 3px 10px #717E47, -0px -0px 3px #717E47;
+ion-grid.route-list ion-col.outer {
+    box-shadow: 3px 3px 10px var(--ion-color-primary),
+        -0px -0px 3px var(--ion-color-primary);
 }
 
-ion-col.header {
-    border: 1px dashed #717E47;
+ion-grid.route-list ion-col.header {
+    border: 1px dashed var(--ion-color-primary);
     border-width: 0 1px;
 }
 
-ion-col.header:first-of-type {
+ion-grid.route-list ion-col.header:first-of-type {
     border-left: 0;
 }
 
-ion-col.header:last-of-type {
+ion-grid.route-list ion-col.header:last-of-type {
     border-right: 0;
 }
 
-ion-col.header h2 {
+ion-grid.route-list ion-col.header h2 {
     display: block;
     font-size: 1.3rem;
     rotate: -45deg;
@@ -36,23 +37,23 @@ ion-col.header h2 {
     margin: 25% -50%;
 }
 
-ion-col:not(.header):not(.outer) {
-    border: 1px dashed #717E47;
+ion-grid.route-list ion-col:not(.header):not(.outer) {
+    border: 1px dashed var(--ion-color-primary);
 }
 
-ion-col:not(.header):not(.outer):first-of-type {
+ion-grid.route-list ion-col:not(.header):not(.outer):first-of-type {
     border-left: 0
 }
 
-ion-col:not(.header):not(.outer):last-of-type {
+ion-grid.route-list ion-col:not(.header):not(.outer):last-of-type {
     border-right: 0
 }
 
-ion-col.entry {
+ion-grid.route-list ion-col.entry {
     color: #000000;
 }
 
-img.project-mark {
+ion-grid.route-list img.project-mark {
     width: 3rem;
     height: 2.5rem;
     position: absolute;

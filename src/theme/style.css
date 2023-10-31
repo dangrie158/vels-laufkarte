@@ -13,5 +13,5 @@ ion-content.bg-white {
 }
 
 ion-content.bg-green {
-    --background: #717E47;
+    --background: var(var(--ion-color-primary); )
 }

@@ -39,7 +39,7 @@ const RouteList: React.FC = () => {
             <IonTitle size="large">Alle Routen</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonGrid>
+        <IonGrid class="route-list">
           <IonRow>
             {[1, 26, 51, 76].map((startId, column) => {
               const routesInColumn = [...Array(25).keys()].map(i => (i + startId) as RouteId);
