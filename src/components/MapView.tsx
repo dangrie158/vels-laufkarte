@@ -122,8 +122,8 @@ const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
   };
 
   return (
-    <svg width={container.width} height={container.height} ref={svgContainer}>
-      <g ref={mapContainer} width={container.width} height={container.height}>
+    <svg width="100%" height="100%" ref={svgContainer}>
+      <g ref={mapContainer} width="100%" height="100%">
         <image width={container.width} height={container.height} href={props.mapImage} />
         {props.routes.map(route => {
           const x = route.location.x * factor + xOffset;
