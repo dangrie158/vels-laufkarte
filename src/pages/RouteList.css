@@ -29,6 +29,7 @@ ion-grid.route-list ion-col.header:last-of-type {
 }
 
 ion-grid.route-list ion-col.header h2 {
+    color: var(--ion-color-primary);
     display: block;
     font-size: 1.3rem;
     rotate: -45deg;
