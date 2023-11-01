@@ -156,7 +156,7 @@ const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
                 <image
                   width={routeSize * 2}
                   href={squareMarkIcon}
-                  transform={`rotate(${-route.location.rotation}) translate(${-routeSize}, ${-routeSize / 2.5})`}
+                  transform={`rotate(${-route.location.rotation}) translate(${-routeSize / 2}, ${-routeSize / 2})`}
                 ></image>
               ) : (
                 ""
