@@ -5,14 +5,14 @@ export const EVENT_NAME = "Wintercup 2023";
 const EVENT_KEY = EVENT_NAME.toLowerCase().replaceAll(" ", "-");
 const ROUTES_FILE_PATH = `${process.env.PUBLIC_URL}/routes/${EVENT_KEY}.json`;
 
-// Request persistent local storage. This works on iOS only if the app is added
-// to the homescreen, otherwise the data will be deleted after 7 days of inactivity
-// https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/
-if (navigator.storage) {
-    const isPersisted = await navigator.storage.persisted();
-    if (!isPersisted) {
-        await navigator.storage.persist();
+export function usePersistentStorage() {
+    // Request persistent local storage. This works on iOS only if the app is added
+    // to the homescreen, otherwise the data will be deleted after 7 days of inactivity
+    // https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/
+    if (navigator.storage) {
+        return [navigator.storage.persist()];
     }
+    return [Promise.reject("storage API not supported")];
 }
 
 export function useLocalStorage<T>(key: string, defaultValue: T): [T, (_: T) => void] {
