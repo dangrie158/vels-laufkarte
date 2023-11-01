@@ -1,33 +1,37 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Statistic.css";
+import "./StatValue.css";
 
 function easeInOutQuad(t: number, b: number, c: number, d: number): number {
   if ((t /= d / 2) < 1) return (c / 2) * t * t + b;
   return (-c / 2) * (--t * (t - 2) - 1) + b;
 }
 
-type StatisticProps = {
+type StatValueProps = {
   value: number;
   type: "fraction" | "percentage" | "number";
   maxValue?: number;
   duration?: number;
 };
-const AnimatedStatistic: React.FC<StatisticProps> = (props: StatisticProps) => {
+const StatValue: React.FC<StatValueProps> = (props: StatValueProps) => {
   const [currentValue, setCurrentValue] = useState(0);
 
-  const frameRequest = useRef<number>(-1);
+  const duration = props.duration ?? 1000;
+  const frameRequest = useRef<number>();
   const startTime = React.useRef(Date.now());
   const startValue = React.useRef(props.value);
 
   useEffect(() => {
-    frameRequest.current = requestAnimationFrame(animate);
-    startTime.current = Date.now();
     startValue.current = currentValue;
-    return () => cancelAnimationFrame(frameRequest.current);
+
+    const startOffset = Math.floor((Math.random() * duration) / 10);
+    setTimeout(() => {
+      startTime.current = Date.now();
+      frameRequest.current = requestAnimationFrame(animate);
+    }, startOffset);
+    return () => (frameRequest.current ? cancelAnimationFrame(frameRequest.current) : void 0);
   }, [props.value]);
 
   const animate = async () => {
-    const duration = props.duration ?? 1000;
     const current = Date.now() - startTime.current;
     const from = startValue.current;
     const to = props.value;
@@ -35,7 +39,7 @@ const AnimatedStatistic: React.FC<StatisticProps> = (props: StatisticProps) => {
     const newValue = easeInOutQuad(current, from, to, duration);
     if (Date.now() >= endTime) {
       setCurrentValue(props.value);
-      frameRequest.current = -1;
+      frameRequest.current = undefined;
     } else {
       setCurrentValue(Math.round(newValue));
       frameRequest.current = requestAnimationFrame(animate);
@@ -77,4 +81,4 @@ const AnimatedStatistic: React.FC<StatisticProps> = (props: StatisticProps) => {
     </div>
   );
 };
-export default AnimatedStatistic;
+export default StatValue;

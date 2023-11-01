@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from "@ionic/react";
 import { EVENT_NAME, RouteStateContext, useRoutes } from "../providers";
-import AnimatedStatistic from "../components/Statistic";
+import StatValue from "../components/StatValue";
 
 const Level: React.FC = () => {
   const [allRoutes] = useRoutes();
@@ -27,17 +27,17 @@ const Level: React.FC = () => {
         </IonHeader>
 
         <h2>Tops</h2>
-        <AnimatedStatistic type="fraction" value={tops} maxValue={allRoutes.length} />
+        <StatValue type="fraction" value={tops} maxValue={allRoutes.length} />
 
         <IonGrid>
           <IonRow>
             <IonCol>
               <h2>Routen geflasht</h2>
-              <AnimatedStatistic type="percentage" value={flashPercentage} />
+              <StatValue type="percentage" value={flashPercentage} />
             </IonCol>
             <IonCol>
               <h2>Routen zum Projektieren</h2>
-              <AnimatedStatistic type="number" value={toProject} maxValue={100} />
+              <StatValue type="number" value={toProject} maxValue={100} />
             </IonCol>
           </IonRow>
         </IonGrid>
