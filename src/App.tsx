@@ -43,14 +43,14 @@ registerServiceWorker();
 
 const App: React.FC = () => {
   const [warning, setWarning] = useState<string | null>(null);
-  const [lastWarning, setLastWarning] = useLocalStorage("last-persistent-storage-warning", 0);
+  const [lastWarning, setLastWarning] = useLocalStorage("persistent-storage-warning-lastDisplayed", 0);
 
   useEffect(() => {
     checkPersistentStorage();
   }, []);
 
   const checkPersistentStorage = async () => {
-    if (Date.now() - lastWarning >= 1000 * 60 * 60 * 24) {
+    if (Date.now() - lastWarning <= 1000 * 60 * 60 * 24) {
       // only bother the user once a day
       return;
     }
