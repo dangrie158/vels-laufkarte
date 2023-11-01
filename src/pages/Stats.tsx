@@ -7,7 +7,7 @@ const Level: React.FC = () => {
   const [allRoutes] = useRoutes();
   const [routeState] = useContext(RouteStateContext);
 
-  const tops = Object.values(routeState).filter(({ state }) => state === "top").length;
+  const tops = Object.values(routeState).filter(({ state }) => ["top", "flash"].includes(state)).length;
   const flashes = Object.values(routeState).filter(({ state }) => state === "flash").length;
   const toProject = Object.values(routeState).filter(({ state }) => state === "project").length;
   const flashPercentage = Math.round((flashes / tops) * 100);
@@ -37,7 +37,7 @@ const Level: React.FC = () => {
             </IonCol>
             <IonCol>
               <h2>Routen zum Projektieren</h2>
-              <StatValue type="number" value={toProject} maxValue={100} />
+              <StatValue type="number" value={toProject} />
             </IonCol>
           </IonRow>
         </IonGrid>
