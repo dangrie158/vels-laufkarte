@@ -8,6 +8,10 @@ h2 {
     font-family: "AbsentGrotesque";
 }
 
+.bg-white h2 {
+    color: #000000;
+}
+
 ion-content.bg-white {
     --background: #FFFFFF;
 }

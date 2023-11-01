@@ -19,6 +19,7 @@ import { listOutline, medalOutline } from "ionicons/icons";
 import Level from "./pages/Level";
 import Info from "./pages/Info";
 import RouteList from "./pages/RouteList";
+import Stats from "./pages/Stats";
 import { RouteStateContext, useRouteState } from "./providers";
 
 import "@ionic/react/css/core.css";
@@ -55,7 +56,7 @@ const App: React.FC = () => {
                 <RouteList />
               </Route>
               <Route exact path="/stats">
-                <RouteList />
+                <Stats />
               </Route>
               <Route path="/info">
                 <Info />
