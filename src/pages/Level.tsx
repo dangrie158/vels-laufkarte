@@ -31,7 +31,7 @@ const Level: React.FC<LevelProps> = (props: LevelProps) => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar hidden={eventName === undefined}>
           <IonTitle style={{ opacity: 1 }}>{eventName}</IonTitle>
         </IonToolbar>
       </IonHeader>

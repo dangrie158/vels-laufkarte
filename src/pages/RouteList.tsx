@@ -38,7 +38,7 @@ const RouteList: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar hidden={eventName === undefined}>
           <IonTitle style={{ opacity: 1 }}>{eventName}</IonTitle>
         </IonToolbar>
       </IonHeader>
