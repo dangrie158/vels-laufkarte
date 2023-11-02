@@ -35,6 +35,10 @@ export function useEvent(): Event {
     if ((Date.now() - lastUpdated) >= update_threshold) {
         fetch(routes_file_path)
             .then(data => data.json())
+            .then(({ endDate, ...eventData }) => {
+                const parsedEndDate = endDate !== undefined ? Date.parse(endDate) : undefined;
+                return { ...eventData, endDate: parsedEndDate };
+            })
             .then(event => setEvent(event))
             .then(() => setLastUpdated(Date.now()));
     }

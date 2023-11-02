@@ -7,14 +7,3 @@
   fill: var(--ion-color-primary);
   text-anchor: end;
 }
-
-
-.statistic svg.stat text:nth-child(2) {
-  font-size: 2em;
-  text-anchor: start;
-}
-
-.statistic svg.stat text:nth-child(3) {
-  font-size: 1em;
-  text-anchor: end;
-}

@@ -23,6 +23,6 @@ export type RouteStateInformation = Record<RouteId, {
 }>;
 export type Event = {
     eventName?: string;
-    endDate?: Date;
+    endDate?: number;
     routes: Route[];
 };

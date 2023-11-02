@@ -8,8 +8,8 @@ function easeInOutQuad(t: number, b: number, c: number, d: number): number {
 
 type StatValueProps = {
   value: number;
-  type: "fraction" | "percentage" | "number";
-  maxValue?: number;
+  unit: "fraction" | string;
+  suffix?: string;
   duration?: number;
 };
 const StatValue: React.FC<StatValueProps> = (props: StatValueProps) => {
@@ -46,37 +46,28 @@ const StatValue: React.FC<StatValueProps> = (props: StatValueProps) => {
     }
   };
 
-  const text = () => {
-    switch (props.type) {
-      case "fraction":
-        return (
-          <>
-            <text x={60} y={10} dominantBaseline="hanging">
-              /
-            </text>
-            <text x={100} y={20} dominantBaseline="hanging">
-              {props.maxValue}
-            </text>
-          </>
-        );
-      case "percentage":
-        return (
-          <text x={60} y={10} dominantBaseline="hanging">
-            %
-          </text>
-        );
-      case "number":
-        return <></>;
-    }
-  };
-
   return (
     <div className="statistic">
       <svg viewBox="0 0 100 30" className="stat">
         <text x={60} y={10} dominantBaseline="hanging">
-          {currentValue}
+          {currentValue.toFixed()}
         </text>
-        {text()}
+        {props.unit === "fraction" ? (
+          <text x={60} y={10} dominantBaseline="hanging" fontSize="2em">
+            /
+          </text>
+        ) : (
+          <text x={60} y={10} dominantBaseline="hanging" fontSize={`${2 / props.unit.length}em`}>
+            {props.unit}
+          </text>
+        )}
+        {props.suffix ? (
+          <text x={70} y={20} dominantBaseline="hanging" fontSize={`${3 / props.suffix.length}em`}>
+            {props.suffix}
+          </text>
+        ) : (
+          ""
+        )}
       </svg>
     </div>
   );
