@@ -11,6 +11,7 @@ type ColorInformation = {
   stroke: HexColor;
   text: HexColor;
 };
+
 const ROUTE_COLORS: Record<RouteColor, ColorInformation> = {
   gray: {
     fill: "#878787",

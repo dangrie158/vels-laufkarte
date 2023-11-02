@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 import MapView from "../components/MapView";
-import { EVENT_NAME, RouteStateContext, useRoutes } from "../providers";
+import { RouteStateContext, useEvent } from "../providers";
 import { Route, RouteState, SetRoute } from "../types";
 import RouteStatePopup from "../components/RouteStatePopup";
 
@@ -12,11 +12,11 @@ type LevelProps = {
 };
 
 const Level: React.FC<LevelProps> = (props: LevelProps) => {
-  const [allRoutes] = useRoutes();
+  const { routes, eventName } = useEvent();
   const [routeState, setRouteState] = useContext(RouteStateContext);
   const [currentRoute, setCurrentRoute] = useState<Route | null>(null);
 
-  const routes = allRoutes.filter(route => route.set && route.level === props.abbrevation) as SetRoute[];
+  const routeOnThisLevel = routes.filter(route => route.set && route.level === props.abbrevation) as SetRoute[];
 
   const updateRouteState = (route: Route, newState: RouteState) => {
     setRouteState({
@@ -32,7 +32,7 @@ const Level: React.FC<LevelProps> = (props: LevelProps) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle style={{ opacity: 1 }}>{EVENT_NAME}</IonTitle>
+          <IonTitle style={{ opacity: 1 }}>{eventName}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="bg-green">
@@ -43,7 +43,7 @@ const Level: React.FC<LevelProps> = (props: LevelProps) => {
         </IonHeader>
         <MapView
           mapImage={props.mapImage}
-          routes={routes}
+          routes={routeOnThisLevel}
           routeStates={routeState}
           onRouteClicked={route => setCurrentRoute(route)}
         ></MapView>

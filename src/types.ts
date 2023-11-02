@@ -21,3 +21,8 @@ export type RouteState = "tbd" | "project" | "flash" | "top";
 export type RouteStateInformation = Record<RouteId, {
     state: RouteState;
 }>;
+export type Event = {
+    eventName?: string;
+    endDate?: Date;
+    routes: Route[];
+};

@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from "@ionic/react";
-import { EVENT_NAME, RouteStateContext, useRoutes } from "../providers";
+import { RouteStateContext, useEvent } from "../providers";
 import StatValue from "../components/StatValue";
 
 const Level: React.FC = () => {
-  const [allRoutes] = useRoutes();
+  const { routes, eventName } = useEvent();
   const [routeState] = useContext(RouteStateContext);
 
   const tops = Object.values(routeState).filter(({ state }) => ["top", "flash"].includes(state)).length;
@@ -16,7 +16,7 @@ const Level: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle style={{ opacity: 1 }}>{EVENT_NAME}</IonTitle>
+          <IonTitle style={{ opacity: 1 }}>{eventName}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent class="bg-white">
@@ -27,7 +27,7 @@ const Level: React.FC = () => {
         </IonHeader>
 
         <h2>Tops</h2>
-        <StatValue type="fraction" value={tops} maxValue={allRoutes.length} />
+        <StatValue type="fraction" value={tops} maxValue={routes.length} />
 
         <IonGrid>
           <IonRow>

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from "@ionic/react";
 import "./RouteList.css";
-import { EVENT_NAME, RouteStateContext, useRoutes } from "../providers";
+import { RouteStateContext, useEvent } from "../providers";
 import { Route, RouteId, RouteState } from "../types";
 import RouteStatePopup from "../components/RouteStatePopup";
 import markIcon from "../assets/mark.svg";
@@ -9,7 +9,7 @@ import markIcon from "../assets/mark.svg";
 const COLUMN_HEIGHT = 25;
 
 const RouteList: React.FC = () => {
-  const [routes] = useRoutes();
+  const { eventName, routes } = useEvent();
   const [routeState, setRouteState] = useContext(RouteStateContext);
   const [currentRoute, setCurrentRoute] = useState<Route | null>(null);
 
@@ -39,7 +39,7 @@ const RouteList: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle style={{ opacity: 1 }}>{EVENT_NAME}</IonTitle>
+          <IonTitle style={{ opacity: 1 }}>{eventName}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="bg-white">

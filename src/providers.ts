@@ -1,9 +1,7 @@
 import { createContext, useState } from "react";
-import { Route, RouteStateInformation } from "./types";
+import { Event, RouteStateInformation } from "./types";
 
-export const EVENT_NAME = "Wintercup 2023";
-const EVENT_KEY = EVENT_NAME.toLowerCase().replaceAll(" ", "-");
-const ROUTES_FILE_PATH = `${process.env.PUBLIC_URL}/routes/${EVENT_KEY}.json`;
+const CURRENT_EVENT = "wintercup-2023";
 
 export function usePersistentStorage() {
     // Request persistent local storage. This works on iOS only if the app is added
@@ -27,23 +25,25 @@ export function useLocalStorage<T>(key: string, defaultValue: T): [T, (_: T) => 
     return [state, setValue];
 }
 
-export function useRoutes(): [Route[]] {
-    const UPDATE_THRESHOLD = 1000 * 60;
-    const [lastUpdated, setLastUpdated] = useLocalStorage<number>(`routes-${EVENT_KEY}-lastUpdated`, 0);
-    const [routes, setRoutes] = useLocalStorage<Route[]>(`routes-${EVENT_KEY}`, []);
+export function useEvent(): Event {
+    const update_threshold = 1000 * 60;
+    const routes_file_path = `${process.env.PUBLIC_URL}/events/${CURRENT_EVENT}.json`;
 
-    if ((Date.now() - lastUpdated) >= UPDATE_THRESHOLD) {
-        fetch(ROUTES_FILE_PATH)
+    const [lastUpdated, setLastUpdated] = useLocalStorage<number>(`events-${CURRENT_EVENT}-lastUpdated`, 0);
+    const [event, setEvent] = useLocalStorage<Event>(`events-${CURRENT_EVENT}`, { routes: [] });
+
+    if ((Date.now() - lastUpdated) >= update_threshold) {
+        fetch(routes_file_path)
             .then(data => data.json())
-            .then(routes => setRoutes(routes))
+            .then(event => setEvent(event))
             .then(() => setLastUpdated(Date.now()));
     }
 
-    return [routes];
+    return event;
 }
 
 type RouteStateContextType = [RouteStateInformation, (_: RouteStateInformation) => void];
 export const RouteStateContext = createContext<RouteStateContextType>([{} as RouteStateInformation, () => null]);
 export function useRouteState(): RouteStateContextType {
-    return useLocalStorage<RouteStateInformation>(`state-${EVENT_KEY}`, {} as RouteStateInformation);
+    return useLocalStorage<RouteStateInformation>(`state-${CURRENT_EVENT}`, {} as RouteStateInformation);
 }
