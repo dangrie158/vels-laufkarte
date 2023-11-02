@@ -34,10 +34,13 @@ const Level: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <h2>Tops</h2>
-        <StatValue unit="fraction" value={tops} suffix={routes.length.toFixed()} />
-
         <IonGrid>
+          <IonRow>
+            <IonCol>
+              <h2>Tops</h2>
+              <StatValue unit="fraction" value={tops} suffix={routes.length.toFixed()} />
+            </IonCol>
+          </IonRow>
           <IonRow>
             <IonCol>
               <h2>Routen geflasht</h2>
