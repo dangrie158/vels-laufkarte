@@ -6,6 +6,8 @@ import { Route, RouteId, RouteState } from "../types";
 import RouteStatePopup from "../components/RouteStatePopup";
 import markIcon from "../assets/mark.svg";
 
+const COLUMN_HEIGHT = 25;
+
 const RouteList: React.FC = () => {
   const [routes] = useRoutes();
   const [routeState, setRouteState] = useContext(RouteStateContext);
@@ -26,6 +28,13 @@ const RouteList: React.FC = () => {
   const currentRouteState: RouteState | null =
     currentRoute !== null ? routeState[currentRoute.id]?.state ?? null : null;
 
+  const numColumns = Math.ceil(routes.length / COLUMN_HEIGHT);
+  const columns: Route[][] = [...Array(numColumns).keys()].map(columnIndex => {
+    const startIndex = columnIndex * COLUMN_HEIGHT;
+    const endIndex = startIndex + COLUMN_HEIGHT;
+    return routes.slice(startIndex, endIndex);
+  });
+
   return (
     <IonPage>
       <IonHeader>
@@ -41,10 +50,9 @@ const RouteList: React.FC = () => {
         </IonHeader>
         <IonGrid class="route-list">
           <IonRow>
-            {[1, 26, 51, 76].map((startId, column) => {
-              const routesInColumn = [...Array(25).keys()].map(i => (i + startId) as RouteId);
+            {columns.map((column, columnIndex) => {
               return (
-                <IonCol class="outer" key={column} sizeXs="6" sizeSm="6" sizeMd="3" size="3">
+                <IonCol class="outer" key={columnIndex} sizeXs="6" sizeSm="6" sizeMd="3" size="3">
                   <IonGrid>
                     <IonRow>
                       <IonCol class="header" size="4"></IonCol>
@@ -55,25 +63,21 @@ const RouteList: React.FC = () => {
                         <h2>TOP</h2>
                       </IonCol>
                     </IonRow>
-                    {routesInColumn.map(routeId => (
-                      <IonRow
-                        key={routeId}
-                        onClick={() => handleRouteClick(routeId)}
-                        aria-disabled={!routes.some(route => route.id === routeId)}
-                      >
+                    {column.map(route => (
+                      <IonRow key={route.id} onClick={() => handleRouteClick(route.id)} aria-disabled={!route.set}>
                         <IonCol size="4">
-                          {routeId}
-                          {routeState[routeId]?.state === "project" ? (
+                          {route.id}
+                          {routeState[route.id]?.state === "project" ? (
                             <img className="project-mark" src={markIcon} />
                           ) : (
                             ""
                           )}
                         </IonCol>
                         <IonCol class="entry" size="4">
-                          {routeState[routeId]?.state === "flash" ? "X" : ""}
+                          {routeState[route.id]?.state === "flash" ? "X" : ""}
                         </IonCol>
                         <IonCol class="entry" size="4">
-                          {routeState[routeId]?.state === "top" ? "X" : ""}
+                          {routeState[route.id]?.state === "top" ? "X" : ""}
                         </IonCol>
                       </IonRow>
                     ))}

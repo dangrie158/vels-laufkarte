@@ -1,6 +1,6 @@
 import { select, zoom } from "d3";
 import React, { useRef, useEffect, useState } from "react";
-import { Route, RouteColor, RouteInformation, RouteStateInformation } from "../types";
+import { RouteColor, SetRoute, RouteStateInformation } from "../types";
 import squareMarkIcon from "../assets/mark-square.svg";
 
 const ROUTE_SIZE = 0.023;
@@ -71,9 +71,9 @@ const ROUTE_COLORS: Record<RouteColor, ColorInformation> = {
 
 type MapViewProps = {
   mapImage: string;
-  routes: RouteInformation;
+  routes: SetRoute[];
   routeStates: RouteStateInformation;
-  onRouteClicked: (route: Route) => void;
+  onRouteClicked: (route: SetRoute) => void;
 };
 
 const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
@@ -100,14 +100,14 @@ const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
   const xOffset = container.width > container.height ? offset : 0;
   const yOffset = container.width < container.height ? offset : 0;
 
-  const strokeColor = (route: Route) => {
+  const strokeColor = (route: SetRoute) => {
     if (props.routeStates[route.id]?.state === "flash") {
       return "gold";
     }
     return ROUTE_COLORS[route.color].stroke;
   };
 
-  const opacity = (route: Route) => {
+  const opacity = (route: SetRoute) => {
     if (props.routeStates[route.id]?.state === "flash" || props.routeStates[route.id]?.state === "top") {
       return 0.5;
     }

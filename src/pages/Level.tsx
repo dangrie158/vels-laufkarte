@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 import MapView from "../components/MapView";
 import { EVENT_NAME, RouteStateContext, useRoutes } from "../providers";
-import { Route, RouteState } from "../types";
+import { Route, RouteState, SetRoute } from "../types";
 import RouteStatePopup from "../components/RouteStatePopup";
 
 type LevelProps = {
@@ -16,7 +16,7 @@ const Level: React.FC<LevelProps> = (props: LevelProps) => {
   const [routeState, setRouteState] = useContext(RouteStateContext);
   const [currentRoute, setCurrentRoute] = useState<Route | null>(null);
 
-  const routes = allRoutes.filter(route => route.level === props.abbrevation);
+  const routes = allRoutes.filter(route => route.set && route.level === props.abbrevation) as SetRoute[];
 
   const updateRouteState = (route: Route, newState: RouteState) => {
     setRouteState({

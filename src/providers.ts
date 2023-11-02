@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { RouteInformation, RouteStateInformation } from "./types";
+import { Route, RouteStateInformation } from "./types";
 
 export const EVENT_NAME = "Wintercup 2023";
 const EVENT_KEY = EVENT_NAME.toLowerCase().replaceAll(" ", "-");
@@ -27,10 +27,10 @@ export function useLocalStorage<T>(key: string, defaultValue: T): [T, (_: T) => 
     return [state, setValue];
 }
 
-export function useRoutes(): [RouteInformation, (_: RouteInformation) => void] {
+export function useRoutes(): [Route[]] {
     const UPDATE_THRESHOLD = 1000 * 60;
     const [lastUpdated, setLastUpdated] = useLocalStorage<number>(`routes-${EVENT_KEY}-lastUpdated`, 0);
-    const [routes, setRoutes] = useLocalStorage<RouteInformation>(`routes-${EVENT_KEY}`, []);
+    const [routes, setRoutes] = useLocalStorage<Route[]>(`routes-${EVENT_KEY}`, []);
 
     if ((Date.now() - lastUpdated) >= UPDATE_THRESHOLD) {
         fetch(ROUTES_FILE_PATH)
@@ -39,7 +39,7 @@ export function useRoutes(): [RouteInformation, (_: RouteInformation) => void] {
             .then(() => setLastUpdated(Date.now()));
     }
 
-    return [routes, setRoutes];
+    return [routes];
 }
 
 type RouteStateContextType = [RouteStateInformation, (_: RouteStateInformation) => void];
